@@ -14,7 +14,7 @@ import {EmployeeService} from '../app/shared/employee.service'
 import {DepartmentService} from '../app/shared/department.service'
 
 //form
-import {ReactiveFormsModule} from '@angular/forms'
+import {ReactiveFormsModule,FormsModule} from '@angular/forms'
 
 //material
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -25,9 +25,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule,} from '@angular/material/datepicker';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import { MatNativeDateModule } from '@angular/material/core';
+import {MatNativeDateModule } from '@angular/material/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSortModule} from '@angular/material/sort';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatDialogModule} from '@angular/material/dialog';
+
 //firebase
 import {AngularFireModule} from '@angular/fire'
 import {AngularFireDatabaseModule} from '@angular/fire/database'
@@ -57,9 +62,16 @@ import { EmployeeListComponent } from './employees/employee-list/employee-list.c
     MatButtonModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    MatTableModule
+    MatTableModule,
+    MatIconModule,
+    MatSortModule,
+    MatPaginatorModule,
+    FormsModule,
+    MatDialogModule
+    
   ],
   providers: [EmployeeService, MatNativeDateModule,DepartmentService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[EmployeeComponent]
 })
 export class AppModule { }

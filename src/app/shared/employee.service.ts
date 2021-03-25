@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormGroup,FormControl,Validators } from '@angular/forms';
 import { AngularFireDatabase, AngularFireList} from '@angular/fire/database'
+import * as _ from 'lodash'
 @Injectable({
   providedIn: 'root'
 })
@@ -64,6 +65,10 @@ export class EmployeeService {
       hireDate:employee.hireDate,
       isPermanent:employee.isPermanent
     })
+  }
+  populateForm(employee){
+    this.form.setValue(_.omit(employee,"departmentName"));
+    console.log(employee);
   }
 
   deleteEmployee($key){

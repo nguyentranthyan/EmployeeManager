@@ -18,4 +18,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 fill-remaining-space{
     flex: 1 1 auto;
 }
+.hide{
+    display: none;
+}
+.mat-footer-row mat-footer-cell{
+    justify-content: center;
+    font-style: italic;
+}
 

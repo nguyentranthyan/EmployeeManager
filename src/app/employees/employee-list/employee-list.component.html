@@ -1,8 +1,52 @@
-<table mat-table [dataSource]="listData">
-    <ng-container matColumnDef="fullName">
-        <mat-header-cell *matHeaderCellDef>Full Name</mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.fullName}} </mat-cell>
-    </ng-container>
-    <mat-header-row *matHeaderRowDef="displayedColums"> </mat-header-row>
-    <mat-row *matRowDef="let row; collumns:displayedColums;"></mat-row>
-</table>
+<div class="search">
+    <button mat-raised-button (click)="oncreate()"><mat-icon>add</mat-icon>Create </button>
+    <mat-form-field>
+        <mat-label></mat-label>
+        <input matInput placeholder="Search" autocomplete="off" [(ngModel)]="searchKey" (keyup)="applyFilter()">
+        <button mat-button matSuffix mat-icon-button *ngIf="searchKey" (click)="onSeachClear()"><mat-icon>close</mat-icon></button>
+      </mat-form-field>
+</div>
+<div class="container-content">
+    <mat-table [dataSource]="listData" matSort>
+        <ng-container matColumnDef="fullName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.fullname}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Email">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Mobile">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Mobile </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.mobile}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="City">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> City </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.city}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="departmentName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Department </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.department}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Actions">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let row" >
+                <button mat-raised-button (click)="onEdit(row)">
+                    <mat-icon>open_in_new</mat-icon>
+                </button>
+                <button mat-raised-button color="warn" (click)="onDelete($key)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        
+    </mat-table>
+    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
