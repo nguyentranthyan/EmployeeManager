@@ -1,0 +1,17 @@
+.example-form {
+    min-width: 100%;
+    max-width: 100%;
+    width: 100%;
+    padding:0px 10px 10px 0px;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  .example-section {
+    margin: 12px 0;
+  }
+  
+  .mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }

@@ -1,0 +1,8 @@
+<table mat-table [dataSource]="listData">
+    <ng-container matColumnDef="fullName">
+        <mat-header-cell *matHeaderCellDef>Full Name</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.fullName}} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColums"> </mat-header-row>
+    <mat-row *matRowDef="let row; collumns:displayedColums;"></mat-row>
+</table>

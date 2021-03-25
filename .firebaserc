@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "employeemanager-491a0": {
+      "hosting": {
+        "project": [
+          "employeemanager-491a0"
+        ]
+      }
+    }
+  }
+}

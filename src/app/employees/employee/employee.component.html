@@ -1,0 +1,73 @@
+<form [formGroup]="this.employeeService.form" class="example-form" (submit)="onSubmit()">
+    <mat-grid-list cols="2" rowHeight="300px">
+        <mat-grid-tile>
+            <div class="controler-container">
+                <input type="hidden" formControlName="$key">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Name:</mat-label>
+                    <input matInput placeholder="fullName" formControlName="fullName">
+                    <mat-error>Invalid Name is not empty</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>Email:</mat-label>
+                    <input matInput placeholder="email" formControlName="email">
+                    <mat-error >Invalid Email is not empty or incorrect email format </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>Mobile:</mat-label>
+                    <input matInput placeholder="mobile" formControlName="mobile">
+                    <mat-error *ngIf=" employeeService.form.controls['mobile'].errors?.required">Mobile is not empty</mat-error>
+                    <mat-error *ngIf=" employeeService.form.controls['mobile'].errors?.minlength">Invalid Mobile at 10 number</mat-error>
+                    <mat-error *ngIf=" employeeService.form.controls['mobile'].errors?.maxlength">Invalid Mobile at 10 number</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>City:</mat-label>
+                    <input matInput placeholder="city" formControlName="city">
+                    <mat-error>City is not empty</mat-error>
+                </mat-form-field>
+            </div>
+
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <div class="controler-container">
+                <mat-radio-group aria-label="Select an option" formControlName="gender">
+                    <mat-label>Gender: </mat-label>
+                    <mat-radio-button value="1">Male </mat-radio-button>
+                    <mat-radio-button value="2">Fermale</mat-radio-button>
+                </mat-radio-group>
+
+                <mat-form-field>
+                    <mat-label>Department</mat-label>
+                    <mat-select formControlName="department">
+                        <mat-option>None</mat-option>
+                        <ng-container *ngFor="let department of departmentService.array">
+                            <mat-option value="{{department.$key}}">{{department.code}}--{{department.name}}</mat-option>
+                        </ng-container>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>HireDate</mat-label>
+                    <input formControlName="hireDate" matInput [matDatepicker]="picker">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error>HireDate is not empty</mat-error>
+                </mat-form-field>
+
+                <div class="add-bottom-padding">
+                    <mat-checkbox formControlName="isPermanent">Permanent employee</mat-checkbox>
+                </div>
+                <div class="example-button-row">
+                    <button mat-raised-button color="primary" type="submit" [disabled]="employeeService.form.invalid">Submit</button>
+                    <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+                </div>
+
+            </div>
+
+        </mat-grid-tile>
+    </mat-grid-list>
+</form>
